@@ -29,6 +29,11 @@
                 <action android:name="com.google.android.apps.muzei.api.MuzeiArtProvider"/>
             </intent-filter>
         </provider>
+
+        <activity android:name=".ConfigActivity" android:theme="@style/Theme.AppCompat.Dialog" android:excludeFromRecents="true"
+
+        >
+        </activity>
     </application>
 
 </manifest>

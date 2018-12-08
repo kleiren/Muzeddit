@@ -1,14 +1,19 @@
 package es.kleiren.muzeddit
 
+import android.content.Context
 import android.net.Uri
 import android.util.Log
 import androidx.work.*
 import com.google.android.apps.muzei.api.provider.Artwork
 import com.google.android.apps.muzei.api.provider.ProviderContract
 import es.kleiren.muzeddit.BuildConfig.MUZEDDIT_AUTHORITY
+import es.kleiren.muzeddit.RedditFetcherService.Companion.subReddit
 import java.io.IOException
 
-class RedditFetcherWorker : Worker() {
+class RedditFetcherWorker(
+    context: Context,
+    workerParams: WorkerParameters
+) : Worker(context, workerParams) {
 
     companion object {
         private const val TAG = "RedditFetcherWorker"
@@ -29,15 +34,11 @@ class RedditFetcherWorker : Worker() {
 
     override fun doWork(): Result {
         val photos = try {
-            RedditFetcherService.popularPhotos()
+            RedditFetcherService.popularPhotos(subReddit)
         } catch (e: IOException) {
             Log.w(TAG, "Error reading Reddit response", e)
-            return Result.RETRY
+            return Result.retry()
         }
-
-        Log.w(TAG, photos.data.children.last().data.url)
-
-        outputData = createOutputData(photos.data.children.last().data.url)
 
         val providerClient = ProviderContract.getProviderClient(
             applicationContext, MUZEDDIT_AUTHORITY
@@ -51,12 +52,6 @@ class RedditFetcherWorker : Worker() {
                 webUri = Uri.parse(photo.data.url)
             }
         })
-        return Result.SUCCESS
-    }
-
-    private fun createOutputData(firstData: String): Data {
-        return Data.Builder()
-            .putString("url", firstData)
-            .build()
+        return Result.success()
     }
 }

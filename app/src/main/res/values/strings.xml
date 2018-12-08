@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Muzeddit</string>
+    <string name="spaceporn">SpacePorn</string>
+    <string name="earthporn">EarthPorn</string>
+    <string name="exposureporn">ExposurePorn</string>
+    <string name="subreddits">SubReddits</string>
 </resources>

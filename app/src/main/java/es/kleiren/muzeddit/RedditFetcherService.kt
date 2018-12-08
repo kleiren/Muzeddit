@@ -1,6 +1,5 @@
 package es.kleiren.muzeddit
 
-import okhttp3.OkHttpClient
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
@@ -11,20 +10,12 @@ import java.io.IOException
 internal interface RedditFetcherService {
 
     companion object {
+        var subReddit = "SpacePorn+EarthPorn+ExposurePorn"
 
         private fun createService(): RedditFetcherService {
-            val okHttpClient = OkHttpClient.Builder()
-                .addInterceptor { chain ->
-                    var request = chain.request()
-                    val url = request.url().newBuilder().build()
-                    request = request.newBuilder().url(url).build()
-                    chain.proceed(request)
-                }
-                .build()
 
             val retrofit = Retrofit.Builder()
                 .baseUrl("https://www.reddit.com/")
-                .client(okHttpClient)
                 .addConverterFactory(MoshiConverterFactory.create())
                 .build()
 
@@ -32,8 +23,8 @@ internal interface RedditFetcherService {
         }
 
         @Throws(IOException::class)
-        internal fun popularPhotos(): RedditNewsResponse {
-            return createService().popularPhotos.execute().body()
+        internal fun popularPhotos(url: String): RedditNewsResponse {
+            return createService().popularPhotos(url).execute().body()
                 ?: throw IOException("Response was null")
         }
 
@@ -42,6 +33,9 @@ internal interface RedditFetcherService {
             createService().trackDownload(photoId).execute()
         }
     }
+
+    @GET("r/{url}/.json?limit=30")
+    fun popularPhotos(@Path("url") url: String): Call<RedditNewsResponse>
 
     @get:GET("r/SpacePorn/.json?limit=30")
     val popularPhotos: Call<RedditNewsResponse>
@@ -52,9 +46,7 @@ internal interface RedditFetcherService {
     class RedditNewsResponse(val data: RedditDataResponse)
 
     class RedditDataResponse(
-        val children: List<RedditChildrenResponse>,
-        val after: String?,
-        val before: String?
+        val children: List<RedditChildrenResponse>
     )
 
     class RedditChildrenResponse(val data: RedditNewsDataResponse)
@@ -62,9 +54,6 @@ internal interface RedditFetcherService {
     class RedditNewsDataResponse(
         val author: String,
         val title: String,
-        val num_comments: Int,
-        val created: Long,
-        val thumbnail: String,
         val url: String
     )
 
