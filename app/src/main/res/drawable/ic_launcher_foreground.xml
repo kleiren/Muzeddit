@@ -1,0 +1,32 @@
+<!--
+  Copyright 2017 Google Inc.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  -->
+
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+        android:width="108dp"
+        android:height="108dp"
+        android:viewportWidth="171.42857"
+        android:viewportHeight="171.42857">
+    <group android:translateX="31.714285"
+            android:translateY="31.714285">
+        <path
+            android:fillAlpha="0.2"
+            android:fillColor="@color/ic_launcher_shadow"
+            android:pathData="m62.957,90.919c-13.463,-13.463 -17.906,-17.449 -17.522,-17.449 1.207,0 3.176,-1.443 3.738,-2.542 0.145,-0.284 0.978,-0.961 0.139,-2.89l-1.929,-4.435 0.128,-18.147 13.354,-4.769 1.843,-0.142c0.997,-0.072 1.272,-0.518 1.892,-0.954 1.092,-0.768 0.075,0.204 0.079,-1.17l1.533,-2.178 21.552,21.562c10.952,10.957 20.153,20.027 20.153,20.105 0,0.114 -28.505,29.655 -28.616,29.655 -0.017,0 -7.445,-7.749 -16.344,-16.647z"/>
+        <path
+            android:fillColor="#fff"
+            android:pathData="m46.442,74.22c-1.126,-0.303 -2.011,-1.047 -2.524,-2.12l-0.315,-0.659 -0.026,-16.148c-0.029,-18.045 -0.072,-16.721 0.586,-17.739 0.409,-0.632 0.857,-1.023 1.533,-1.34 1.455,-0.681 2.986,-0.447 4.173,0.638 0.691,0.631 1.105,1.498 1.158,2.426 0.022,0.382 0.068,0.694 0.102,0.694 0.034,0 0.224,-0.192 0.422,-0.426 0.198,-0.235 0.723,-0.731 1.167,-1.104 2.404,-2.017 5.073,-3.128 8.25,-3.434 1.63,-0.157 3.757,0.058 4.657,0.47 0.555,0.254 1.339,0.96 1.644,1.481 0.588,1.003 0.654,2.423 0.162,3.474 -0.362,0.773 -1.048,1.46 -1.825,1.827l-0.59,0.279 -2.089,0.055c-2.236,0.059 -2.762,0.135 -4.146,0.598 -3.295,1.104 -6.014,3.84 -7.123,7.169 -0.583,1.75 -0.552,1.151 -0.607,11.634 -0.046,8.611 -0.064,9.567 -0.195,9.892 -0.725,1.803 -2.633,2.811 -4.416,2.331z"/>
+    </group>
+</vector>
